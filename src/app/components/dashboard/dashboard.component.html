@@ -1,0 +1,57 @@
+<mat-card>
+  <mat-card>
+    <mat-card-title>Actions</mat-card-title>
+    <mat-card-actions>
+      <button mat-button
+              (click)="addItem()"
+              color="primary">Add New Item</button>
+      <button mat-button
+              (click)="logout()"
+              color="primary">Logout</button>
+      <button mat-button
+              (click)="addProject()"
+              color="primary">Add New Project</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>Forecast</mat-card-title>
+    <mat-card-content>
+      <mat-chip-list>
+        <mat-chip color="accent">Overdue (3)</mat-chip>
+        <mat-chip color="accent">Today (2)</mat-chip>
+        <mat-chip color="accent">Tuesday (3)</mat-chip>
+        <mat-chip color="accent">Wednesday (3)</mat-chip>
+        <mat-chip color="accent">Thursday (3)</mat-chip>
+        <mat-chip color="accent">Friday (2)</mat-chip>
+        <mat-chip color="accent">Saturday (3)</mat-chip>
+        <mat-chip color="accent">Sunday (3)</mat-chip>
+        <mat-chip color="accent">Future (13)</mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>Inbox</mat-card-title>
+    <mat-card-content>Inbox items have no project assigned.</mat-card-content>
+    <mat-card-actions>
+      <button mat-button>
+        <mat-chip [routerLink]=""
+                  [queryParams]="{inbox: true}">
+          <mat-icon>inbox</mat-icon> ({{inboxCount$ | async}})
+        </mat-chip>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>Projects</mat-card-title>
+    <mat-card-content>Todo Items assigned to a Project</mat-card-content>
+    <mat-card-actions>
+      <button mat-button
+              *ngFor="let project of projects$ | async">
+        <mat-chip [routerLink]=""
+                  [queryParams]="{'project': project.name}">
+          <mat-icon>event</mat-icon> {{ project.name}} ({{ project.count}})
+        </mat-chip>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</mat-card>

@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Clean Garage",
+    "completed": false
+  },
+  {
+    "name": "Change Bulbs",
+    "completed": false
+  },
+  {
+    "name": "Repair Garden Hose",
+    "completed": false
+  },
+  {
+    "name": "Write RxJs Tutorial",
+    "project": "Work",
+    "completed": false
+  },
+  {
+    "name": "Call Bill",
+    "project": "Home",
+    "completed": false,
+    "dueDate": "2020-12-12"
+  }
+]

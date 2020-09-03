@@ -1,0 +1,50 @@
+<h3>{{ data.filter }}</h3>
+
+<div cdkDropList
+     class="example-list"
+     (cdkDropListDropped)="drop($event)">
+  <div class="example-box"
+       [attr.data-id]="item.id"
+       *ngFor="let item of items$ | async"
+       cdkDrag>
+    <div class="example-custom-placeholder"
+         *cdkDragPlaceholder></div>
+    <mat-icon>reorder</mat-icon>
+
+    <span>{{item.name}}</span>
+    <mat-divider></mat-divider>
+    <div *ngIf="item.project">{{ item.project }}
+
+
+    </div>
+    <span *ngIf="!item.project">No Project</span>
+    <button mat-icon-button
+            color="primary"
+            aria-label="Example icon button with a menu icon">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <mat-divider></mat-divider>
+    <span *ngIf="item.dueDate">{{ item.dueDate | date:'shortDate'  }} {{ item.dueDate | date:'shortTime' }}</span>
+    <span *ngIf="!item.dueDate">No Due Date</span>
+    <button mat-icon-button
+            color="primary"
+            aria-label="Example icon button with a menu icon">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <mat-divider></mat-divider>
+
+    <button mat-button
+            *ngIf="!item.completed">
+      <mat-icon>radio_button_unchecked</mat-icon>
+    </button>
+    <button mat-button
+            *ngIf="item.completed">
+      <mat-icon>radio_button_checked</mat-icon>
+    </button>
+  </div>
+</div>
+
+
+<button mat-button
+        (click)="done()"
+        color="primary">Close</button>

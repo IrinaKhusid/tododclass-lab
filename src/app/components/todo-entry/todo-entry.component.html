@@ -1,0 +1,47 @@
+<form [formGroup]="form">
+  <div class="field-container">
+    <mat-form-field hintLabel="Max of 200 Characters"
+                    style="width: 800px !important"
+                    appearance="fill">
+      <mat-label>Enter your Task</mat-label>
+      <input matInput
+             #input
+             formControlName="name"
+             maxlength="200"
+             placeholder="Take out the trash">
+      <mat-hint align="end">{{ input.value?.length || 0}}/200</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width"
+                    appearance="fill">
+      <mat-label>Due Date</mat-label>
+      <!-- todo: fix this so we can do a time-->
+      <input matInput
+             type="datetime"
+             formControlName="dueDate"
+             [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix
+                             [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Project</mat-label>
+    <mat-select formControlName="project">
+      <mat-option value=""></mat-option>
+      <mat-option *ngFor="let p of projects$ | async"
+                  value="{{p.name}}">{{p.name}}</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+  <div>
+    <button mat-button
+            (click)="submit()"
+            [disabled]="form.invalid">Submit</button>
+    <button (click)="cancel()"
+            mat-button>Cancel</button>
+  </div>
+</form>
